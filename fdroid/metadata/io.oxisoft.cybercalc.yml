@@ -12,3 +12,5 @@ AutoName: CyberCalc
 # the APK. After a Play signing-key rotation, add the new digest next to the old one.
 AllowedAPKSigningKeys:
   - b3afc17d1126ca4c149eba45eba38558fe518119feb8d98f86f4b54c75593567
+CurrentVersion: 1.0.10
+CurrentVersionCode: 13
