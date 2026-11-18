@@ -1,0 +1,87 @@
+# F-Droid repo on GitHub Pages, published by fdroidkit.
+#
+# Layout of the repository that holds this workflow (see docs/github-pages.md):
+#   fdroid/config.yml     keystore + passphrases read from env, repo_url = the Pages URL
+#   fdroid/metadata/      one <package>.yml per app, signer pinned by `fdroidkit add-app`
+#   fdroid/repo/icon.png  the repo icon (APKs are NOT committed: the action restores them
+#                         from the live site before every publish)
+#   fdroid/fdroidkit.json optional landing page brand
+#
+# Secrets: FDROID_KEYSTORE_B64 (base64 of the PKCS12 index key), FDROID_KEYSTORE_PASS.
+# Settings > Pages > Source: GitHub Actions.
+name: publish to F-Droid
+
+on:
+  workflow_dispatch:
+    inputs:
+      package: { description: Application id, required: true }
+      version-code: { description: versionCode, required: true }
+      version-name: { description: versionName, required: true }
+      apk-url: { description: URL of the signed APK to publish, required: true }
+
+permissions:
+  contents: write   # commit the bumped metadata back
+  pages: write
+  id-token: write
+
+concurrency:
+  group: fdroid-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch the APK
+        env:
+          APK_URL: ${{ inputs.apk-url }}
+        run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/in.apk" "$APK_URL"
+      - uses: oxisoft/fdroid-kit/.github/actions/publish@main
+        env:
+          FDROID_KEYSTORE_B64: ${{ secrets.FDROID_KEYSTORE_B64 }}
+          FDROID_KEYSTORE_PASS: ${{ secrets.FDROID_KEYSTORE_PASS }}
+        with:
+          package: ${{ inputs.package }}
+          version-code: ${{ inputs.version-code }}
+          version-name: ${{ inputs.version-name }}
+          source: file
+          apk: ${{ runner.temp }}/in.apk
+      - name: Commit the bumped metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fdroid/metadata
+          git commit -m "F-Droid: ${{ inputs.package }} ${{ inputs.version-name }} (${{ inputs.version-code }})" || exit 0
+          git push
+
+  deploy:
+    needs: publish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python -m pip install --quiet "fdroidkit[site] @ git+https://github.com/oxisoft/fdroid-kit@main"
+      - name: Live landing page matches the live index key
+        run: |
+          url="$(sed -n 's/^repo_url: *//p' fdroid/config.yml | tr -d "\"'")"
+          site="${url%/fdroid/repo}"
+          for i in 1 2 3 4 5 6; do
+            curl -fsS "$url/index-v2.json" -o /dev/null && break
+            sleep 10
+          done
+          mkdir -p "$RUNNER_TEMP/live"
+          curl -fsS "$site/" -o "$RUNNER_TEMP/live/index.html"
+          curl -fsS "$site/qr.svg" -o "$RUNNER_TEMP/live/qr.svg" || true
+          fdroidkit --repo fdroid verify --site "$RUNNER_TEMP/live" --live "$url"

@@ -1,0 +1,14 @@
+# Written by fdroidkit add-app. Fields: https://f-droid.org/docs/Build_Metadata_Reference/
+Categories:
+  - System
+License: Proprietary
+WebSite: https://oxisoft.io
+
+Name: CyberCalc
+AutoName: CyberCalc
+
+# Play App Signing key (DN O=Google Inc.), read from io.oxisoft.cybercalc_13.apk by --discover-signer.
+# Every APK signer must be listed here or `fdroidkit publish` and `fdroid update` refuse
+# the APK. After a Play signing-key rotation, add the new digest next to the old one.
+AllowedAPKSigningKeys:
+  - b3afc17d1126ca4c149eba45eba38558fe518119feb8d98f86f4b54c75593567

@@ -1,0 +1,29 @@
+# Written by fdroidkit init. Holds NO secret: the passphrases come from the
+# environment (FDROID_KEYSTORE_PASS), so this file can be committed.
+# Reference: https://gitlab.com/fdroid/fdroidserver/-/blob/master/examples/config.yml
+
+repo_url: "https://oxisoft.github.io/fdroid-kit-example/fdroid/repo"
+repo_name: "fdroidkit example"
+repo_icon: icon.png
+repo_description: |
+    Throwaway demo repo of github.com/oxisoft/fdroid-kit. Test key, not for real use.
+
+archive_older: 3
+archive_url: "https://oxisoft.github.io/fdroid-kit-example/fdroid/archive"
+archive_name: "fdroidkit example Archive"
+archive_icon: icon.png
+archive_description: |
+    Earlier versions of fdroidkit example apps.
+
+# Index signing key (signs the index, never the apps). Back it up: losing it
+# makes every user re-add the repo under a new fingerprint.
+keystore: {env: FDROID_KEYSTORE}
+repo_keyalias: "fdroid-kit-example"
+keydname: "CN=fdroid-kit-example, OU=F-Droid"
+keystorepass: {env: FDROID_KEYSTORE_PASS}
+keypass: {env: FDROID_KEYSTORE_PASS}
+
+# Deploy target, e.g. rsync over an ssh config alias (a user@host:port form
+# does not work here, see docs/setup-traps.md):
+# serverwebroot:
+#   - url: myhost:/var/www/fdroid.example.com/fdroid

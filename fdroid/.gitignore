@@ -1,0 +1,10 @@
+# fdroidkit: never commit the index key or its passphrase (docs/signing-model.md)
+*.p12
+*.jks
+*.keystore
+keystore*
+*.pass
+# fdroidserver work dirs
+tmp/
+.cache/
+unsigned/
