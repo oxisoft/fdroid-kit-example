@@ -37,7 +37,7 @@ jobs:
         env:
           APK_URL: ${{ inputs.apk-url }}
         run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/in.apk" "$APK_URL"
-      - uses: oxisoft/fdroid-kit/.github/actions/publish@main
+      - uses: oxisoft/fdroid-kit/.github/actions/publish@v0.1.0
         env:
           FDROID_KEYSTORE_B64: ${{ secrets.FDROID_KEYSTORE_B64 }}
           FDROID_KEYSTORE_PASS: ${{ secrets.FDROID_KEYSTORE_PASS }}
@@ -72,7 +72,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: python -m pip install --quiet "fdroidkit[site] @ git+https://github.com/oxisoft/fdroid-kit@main"
+      - run: python -m pip install --quiet "fdroidkit[site] @ git+https://github.com/oxisoft/fdroid-kit@v0.1.0"
       - name: Live landing page matches the live index key
         run: |
           url="$(sed -n 's/^repo_url: *//p' fdroid/config.yml | tr -d "\"'")"

@@ -1,0 +1,13 @@
+# Written by fdroidkit add-app. Fields: https://f-droid.org/docs/Build_Metadata_Reference/
+Categories:
+  - Time
+License: Proprietary
+
+Name: Oxi Pomodoro
+AutoName: Oxipomodoro
+
+# Play App Signing key (DN O=Google Inc.), read from pomo14.apk by --discover-signer.
+# Every APK signer must be listed here or `fdroidkit publish` and `fdroid update` refuse
+# the APK. After a Play signing-key rotation, add the new digest next to the old one.
+AllowedAPKSigningKeys:
+  - 41b3aee21ae73afe74e00266c2ff67c14d1f5c03047538800b3861f4c893d091

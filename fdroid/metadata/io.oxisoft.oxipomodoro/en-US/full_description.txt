@@ -1,0 +1,24 @@
+Oxi Pomodoro is a focus timer with a neon look. A glowing red tomato sits inside an electric blue ring, and the ring burns down smoothly while you work. Swipe to set the time, tap to start, and your phone tells you when the session is over.
+
+SIMPLE CONTROLS
+- Swipe up or down anywhere to set the time, from 10 seconds to 99 minutes.
+- Under five minutes the steps get finer: 10 seconds, then 5, then single seconds.
+- Tap to start or pause, long press to reset.
+- Your recent durations are one tap away.
+
+A COUNTDOWN YOU CAN FEEL
+- A start animation kicks off every session.
+- The ring runs down smoothly from orange to red, with a pulsing light at its end.
+- The tomato slowly breathes while you focus.
+
+KNOW WHEN TIME IS UP
+- Four alarm sounds to choose from, with a preview.
+- Vibration while the alarm plays, which you can switch off.
+- A notification when a session ends while the app is in the background.
+
+PRIVATE BY DESIGN
+- No account, no sign-in.
+- No ads, no tracking, no analytics.
+- Nothing leaves your phone. Your settings are stored only on your device.
+
+Made in Poland by OxiSoft, a small studio building privacy-first apps.
