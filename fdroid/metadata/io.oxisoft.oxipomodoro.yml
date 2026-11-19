@@ -11,3 +11,5 @@ AutoName: Oxipomodoro
 # the APK. After a Play signing-key rotation, add the new digest next to the old one.
 AllowedAPKSigningKeys:
   - 41b3aee21ae73afe74e00266c2ff67c14d1f5c03047538800b3861f4c893d091
+CurrentVersion: 2.0.0
+CurrentVersionCode: 14
