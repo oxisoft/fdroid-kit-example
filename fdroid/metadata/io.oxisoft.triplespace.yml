@@ -1,0 +1,13 @@
+# Written by fdroidkit add-app. Fields: https://f-droid.org/docs/Build_Metadata_Reference/
+Categories:
+  - Games
+License: Proprietary
+
+Name: Triple Space
+AutoName: Triple Space
+
+# Play App Signing key (DN O=Google Inc.), read from ts10.apk by --discover-signer.
+# Every APK signer must be listed here or `fdroidkit publish` and `fdroid update` refuse
+# the APK. After a Play signing-key rotation, add the new digest next to the old one.
+AllowedAPKSigningKeys:
+  - b69df574889361bf9434fe93acd7cb9cde4169c4d2876e82ac7d648ed990492b
