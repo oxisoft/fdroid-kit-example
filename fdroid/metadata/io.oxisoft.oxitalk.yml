@@ -13,3 +13,5 @@ AutoName: OxiTalk
 # the APK. After a signing-key rotation, add the new digest next to the old one.
 AllowedAPKSigningKeys:
   - 6f6beaf2090968f173ff68df6e519b52ffc770c447795557f4490d0e6b7b91ad
+CurrentVersion: 0.2.1
+CurrentVersionCode: 49
