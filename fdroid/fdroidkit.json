@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "io.oxisoft.oxitalk": {
+      "source": {
+        "type": "github-release",
+        "repo": "oxisoft/oxitalk",
+        "asset": "*-android.apk"
+      }
+    }
+  }
+}

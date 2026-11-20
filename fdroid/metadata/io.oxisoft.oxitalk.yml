@@ -1,0 +1,15 @@
+# Written by fdroidkit add-app. Fields: https://f-droid.org/docs/Build_Metadata_Reference/
+Categories:
+  - Internet
+License: MIT
+WebSite: https://github.com/oxisoft/oxitalk
+SourceCode: https://github.com/oxisoft/oxitalk
+
+Name: OxiTalk
+AutoName: OxiTalk
+
+# Self-signed APK signer, read from oxitalk-0.2.1-android.apk (oxisoft/oxitalk v0.2.1) by --from-github.
+# Every APK signer must be listed here or `fdroidkit publish` and `fdroid update` refuse
+# the APK. After a signing-key rotation, add the new digest next to the old one.
+AllowedAPKSigningKeys:
+  - 6f6beaf2090968f173ff68df6e519b52ffc770c447795557f4490d0e6b7b91ad

@@ -1,0 +1,3 @@
+OxiTalk by OxiSoft: a Matrix chat client.
+
+Served here only as the demo of the fdroid-kit GitHub Release source: the APK comes straight from the oxisoft/oxitalk GitHub release and is checked against its pinned self-signed signer. Not the official channel for OxiTalk.

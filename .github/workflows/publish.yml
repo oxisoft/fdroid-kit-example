@@ -15,9 +15,15 @@ on:
   workflow_dispatch:
     inputs:
       package: { description: Application id, required: true }
-      version-code: { description: versionCode, required: true }
-      version-name: { description: versionName, required: true }
-      apk-url: { description: URL of the signed APK to publish, required: true }
+      source:
+        description: "file = the APK at apk-url; github-release = the app's GitHub release (fdroid/fdroidkit.json)"
+        type: choice
+        options: [file, github-release]
+        default: file
+      version-code: { description: "versionCode (empty for github-release: read from the APK)", required: false }
+      version-name: { description: "versionName (empty for github-release)", required: false }
+      apk-url: { description: "URL of the signed APK (source file only)", required: false }
+      tag: { description: "Release tag (github-release only, default the latest release)", required: false }
 
 permissions:
   contents: write   # commit the bumped metadata back
@@ -34,25 +40,34 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Fetch the APK
+        if: inputs.source == 'file'
         env:
           APK_URL: ${{ inputs.apk-url }}
         run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/in.apk" "$APK_URL"
-      - uses: oxisoft/fdroid-kit/.github/actions/publish@v0.1.1
+      # Unreleased kit (main, FK-16 GitHub Release source); back to a tag at the next release.
+      - uses: oxisoft/fdroid-kit/.github/actions/publish@fa41a7e92874444f6728b7daef81113502447e2e
         env:
           FDROID_KEYSTORE_B64: ${{ secrets.FDROID_KEYSTORE_B64 }}
           FDROID_KEYSTORE_PASS: ${{ secrets.FDROID_KEYSTORE_PASS }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           package: ${{ inputs.package }}
           version-code: ${{ inputs.version-code }}
           version-name: ${{ inputs.version-name }}
-          source: file
-          apk: ${{ runner.temp }}/in.apk
+          source: ${{ inputs.source }}
+          apk: ${{ inputs.source == 'file' && format('{0}/in.apk', runner.temp) || '' }}
+          tag: ${{ inputs.tag }}
       - name: Commit the bumped metadata
+        env:
+          PKG: ${{ inputs.package }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          meta="fdroid/metadata/${PKG}.yml"
+          name="$(sed -n 's/^CurrentVersion: *//p' "$meta")"
+          code="$(sed -n 's/^CurrentVersionCode: *//p' "$meta")"
           git add fdroid/metadata
-          git commit -m "F-Droid: ${{ inputs.package }} ${{ inputs.version-name }} (${{ inputs.version-code }})" || exit 0
+          git commit -m "F-Droid: ${PKG} ${name} (${code})" || exit 0
           git push
 
   deploy:
@@ -72,7 +87,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with: { python-version: "3.12" }
-      - run: python -m pip install --quiet "fdroidkit[site] @ git+https://github.com/oxisoft/fdroid-kit@v0.1.1"
+      - run: python -m pip install --quiet "fdroidkit[site] @ git+https://github.com/oxisoft/fdroid-kit@fa41a7e92874444f6728b7daef81113502447e2e"
       - name: Live landing page matches the live index key
         run: |
           url="$(sed -n 's/^repo_url: *//p' fdroid/config.yml | tr -d "\"'")"
