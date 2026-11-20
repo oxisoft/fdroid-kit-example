@@ -11,3 +11,5 @@ AutoName: Triple Space
 # the APK. After a Play signing-key rotation, add the new digest next to the old one.
 AllowedAPKSigningKeys:
   - b69df574889361bf9434fe93acd7cb9cde4169c4d2876e82ac7d648ed990492b
+CurrentVersion: 1.0.8
+CurrentVersionCode: 10
