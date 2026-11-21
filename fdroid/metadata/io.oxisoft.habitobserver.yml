@@ -12,3 +12,5 @@ AutoName: Habit Observer
 AllowedAPKSigningKeys:
   - 55a5d00563263fc67620009df8b2c991d132f1da4c5f3153a11bb8392e494b62
   - 5b6abb0c04c470499d7718298a7ce54220add62a10b906ab861663d0f94db9b2
+CurrentVersion: 1.0.34
+CurrentVersionCode: 34
