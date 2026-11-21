@@ -1,0 +1,3 @@
+CyberCalc od OxiSoft: kalkulator w neonowym stylu cyberpunk.
+
+Udostępniony tu wyłącznie jako aplikacja demonstracyjna przykładu fdroid-kit na GitHub Pages. Prawdziwe repozytorium F-Droid z aplikacjami OxiSoft to fdroid.oxisoft.io.
