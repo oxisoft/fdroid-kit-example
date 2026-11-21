@@ -1,0 +1,14 @@
+Habit Observer turns your daily routine into a honeycomb. Each habit is a cell; fill the cells and watch the hive fill up.
+
+* Up to seven habits on one board, at a glance
+* Daily, weekly, monthly or custom schedules, with a target count per day
+* Swipe to complete: one motion, instant feedback
+* Streaks, monthly, quarterly and yearly stats, best month, average
+* Edit past days when you forgot to check in
+* Gentle reminders at the time you choose
+* Light and dark themes; first day of week and language follow the system
+* Private by design: no account, no cloud, nothing leaves the phone
+
+Free for three habits. Habit PRO (one-time purchase) unlocks seven habits, full statistics and editing of past days.
+
+On GrapheneOS, PRO is free: on a phone running GrapheneOS with a locked bootloader, every PRO feature unlocks automatically, verified by the phone's secure hardware.

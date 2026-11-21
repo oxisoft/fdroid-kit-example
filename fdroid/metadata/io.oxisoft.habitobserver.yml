@@ -1,0 +1,14 @@
+# Written by fdroidkit add-app. Fields: https://f-droid.org/docs/Build_Metadata_Reference/
+Categories:
+  - Sports & Health
+License: Proprietary
+
+Name: Habit Observer
+AutoName: Habit Observer
+
+# Play App Signing key (DN O=Google Inc.), read from ho34.apk by --discover-signer.
+# Every APK signer must be listed here or `fdroidkit publish` and `fdroid update` refuse
+# the APK. After a signing-key rotation, add the new digest next to the old one.
+AllowedAPKSigningKeys:
+  - 55a5d00563263fc67620009df8b2c991d132f1da4c5f3153a11bb8392e494b62
+  - 5b6abb0c04c470499d7718298a7ce54220add62a10b906ab861663d0f94db9b2
