@@ -1,0 +1,22 @@
+# Weekly health check of this live F-Droid repo, from fdroid-kit's examples/doctor-weekly.yml.
+name: fdroid doctor
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # Monday 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oxisoft/fdroid-kit/.github/actions/doctor@v0.1.6
+        with:
+          url: https://oxisoft.github.io/fdroid-kit-example/fdroid/repo
+          site-url: https://oxisoft.github.io/fdroid-kit-example/
+          repo-path: fdroid
+          fail-on-warn: "false"

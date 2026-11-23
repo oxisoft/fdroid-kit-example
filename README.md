@@ -14,3 +14,4 @@ about. It serves CyberCalc by OxiSoft, the same Play-signed APK as
 the app metadata with its pinned signer, and the repo icon. APKs are not committed: the
 action restores them from the live site before each publish.
 `.github/workflows/publish.yml` publishes, deploys Pages and verifies the live site.
+`.github/workflows/doctor.yml` audits the live repo every Monday with the kit's doctor action.
