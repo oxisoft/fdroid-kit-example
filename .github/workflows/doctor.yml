@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: oxisoft/fdroid-kit/.github/actions/doctor@v0.1.6
+      - uses: oxisoft/fdroid-kit/.github/actions/doctor@v0.1.7
         with:
           url: https://oxisoft.github.io/fdroid-kit-example/fdroid/repo
           site-url: https://oxisoft.github.io/fdroid-kit-example/
           repo-path: fdroid
+          budget: github-pages
           fail-on-warn: "false"
