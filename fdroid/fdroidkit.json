@@ -12,6 +12,22 @@
     "locales": [
       "en-US",
       "pl"
-    ]
+    ],
+    "badges": {
+      "io.oxisoft.oxitalk": {
+        "title_badge": {
+          "text": "BETA",
+          "color": "#FF6A00"
+        },
+        "category": "Communication",
+        "tags": [
+          "Matrix",
+          "encrypted",
+          "chat",
+          "calls",
+          "open source"
+        ]
+      }
+    }
   }
 }

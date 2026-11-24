@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: oxisoft/fdroid-kit/.github/actions/doctor@v0.1.7
+      - uses: oxisoft/fdroid-kit/.github/actions/doctor@v0.1.8
         with:
           url: https://oxisoft.github.io/fdroid-kit-example/fdroid/repo
           site-url: https://oxisoft.github.io/fdroid-kit-example/
